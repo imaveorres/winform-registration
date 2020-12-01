@@ -10,7 +10,12 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Data.SqlClient;
 using System.IO;
-
+/// <summary>
+/// Coded by: Kim Dave Torres
+/// Start-Date: November 27, 2020
+/// End-Date: November 30, 2020
+/// Subject: DBMS
+/// </summary>
 namespace Torres_RegistrationActivity
 {
     public partial class Registration : Form
@@ -20,23 +25,16 @@ namespace Torres_RegistrationActivity
             InitializeComponent();
             DisplayUserData();
         }
-        private void groupBox1_Enter(object sender, EventArgs e)
-        {
-
-        }
-        private void label5_Click(object sender, EventArgs e)
-        {
-
-        }
-
-       
+ 
 
         //SQL CONNECTION STRING --START
         string connection_string = "Data Source=DESKTOP-DBIK9BF;Initial Catalog=UserRegistration;Integrated Security=True";
         //--END
 
+
         string img_location = "";
         int userid;
+
 
         //BROWSE PHOTO --START
         private void browseBtn_Click(object sender, EventArgs e)
@@ -52,15 +50,6 @@ namespace Torres_RegistrationActivity
         }
         //--END
 
-        private void groupBoxFunctionality_Enter(object sender, EventArgs e)
-        {
-
-
-        }
-        private void label_insert_picture_Click(object sender, EventArgs e)
-        {
-
-        }
 
         //ADD NEW USER --START
         private void save_Click(object sender, EventArgs e)
@@ -222,19 +211,6 @@ namespace Torres_RegistrationActivity
         //END
 
 
-
-        //CLEAR INPUT FIELD --START
-        public void ClearInputField()
-        {
-            pictureBox.Image = null;
-            fname.Text = string.Empty;
-            lname.Text = string.Empty;
-            emailAddress.Text = string.Empty;
-            uname.Text = string.Empty;
-            pwd.Text = string.Empty;
-        }
-        //--END
-
         //SEARCH --START
         private void search_TextChanged(object sender, EventArgs e)
         {
@@ -255,6 +231,7 @@ namespace Torres_RegistrationActivity
             }
         }
         //--END
+
 
         //DISPLAY USER DATA --START
         public void DisplayUserData()
@@ -290,17 +267,17 @@ namespace Torres_RegistrationActivity
         }
         //--END
 
+
         //DATA GRID CLICK --START
         private void UserDataGrid_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             userid = int.Parse(UserDataGrid.CurrentRow.Cells[0].Value.ToString());
-            MessageBox.Show(userid.ToString());
+            
             byte[] photo_arr = (byte[])UserDataGrid.CurrentRow.Cells[1].Value;
             MemoryStream mem_stream = new MemoryStream(photo_arr);
             pictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
             pictureBox.Image = Image.FromStream(mem_stream);
             
-
             fname.Text = UserDataGrid.CurrentRow.Cells[2].Value.ToString();
             lname.Text = UserDataGrid.CurrentRow.Cells[3].Value.ToString();
             emailAddress.Text = UserDataGrid.CurrentRow.Cells[4].Value.ToString();
@@ -309,6 +286,36 @@ namespace Torres_RegistrationActivity
         }
         //--END
 
+
+        //CLEAR INPUT FIELDS --START
+        public void ClearInputField()
+        {
+            pictureBox.Image = null;
+            fname.Text = string.Empty;
+            lname.Text = string.Empty;
+            emailAddress.Text = string.Empty;
+            uname.Text = string.Empty;
+            pwd.Text = string.Empty;
+        }
+        //--END
+
+
+
+
+
+        private void groupBox1_Enter(object sender, EventArgs e)
+        {
+
+        }
+        private void label5_Click(object sender, EventArgs e)
+        {
+
+        }
+        private void groupBoxFunctionality_Enter(object sender, EventArgs e)
+        {
+
+
+        }
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
            
@@ -337,8 +344,5 @@ namespace Torres_RegistrationActivity
         {
 
         }
-
-        
-
     }
 }
