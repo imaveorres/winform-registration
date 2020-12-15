@@ -11,10 +11,9 @@ using System.Windows.Forms;
 using System.Data.SqlClient;
 using System.IO;
 /// <summary>
-/// Coded by: Kim Dave Torres
-/// Start-Date: November 27, 2020
-/// End-Date: November 30, 2020
-/// Subject: DBMS
+/// Coded by       : Kim Dave Torres
+/// Activity Title : User Registration
+/// Subject        : DBMS
 /// </summary>
 namespace Torres_RegistrationActivity
 {
@@ -28,7 +27,7 @@ namespace Torres_RegistrationActivity
  
 
         //SQL CONNECTION STRING --START
-        string connection_string = "Data Source=DESKTOP-DBIK9BF;Initial Catalog=UserRegistration;Integrated Security=True";
+        string connection_string = "Data Source=DESKTOP-B7LVHLT;Initial Catalog=UserRegistration;Integrated Security=True";
         //--END
 
 
@@ -100,9 +99,8 @@ namespace Torres_RegistrationActivity
                 mem_stream.Read(photo_arr, 0, photo_arr.Length);
                 //end
 
-                SqlCommand sqlcmd = new SqlCommand("sp_insert_user", sqlcnn);
+                SqlCommand sqlcmd = new SqlCommand("sp_insert", sqlcnn);
                 sqlcmd.CommandType = CommandType.StoredProcedure;
-                sqlcmd.Parameters.AddWithValue("@UserID", 0);
                 sqlcmd.Parameters.AddWithValue("@ProfileImage", photo_arr);
                 sqlcmd.Parameters.AddWithValue("@Firstname", fname.Text);
                 sqlcmd.Parameters.AddWithValue("@Lastname", lname.Text);
@@ -145,7 +143,7 @@ namespace Torres_RegistrationActivity
             mem_stream.Read(photo_arr, 0, photo_arr.Length);
             //end
 
-            SqlCommand sqlcmd = new SqlCommand("sp_update_user", sqlcnn);
+            SqlCommand sqlcmd = new SqlCommand("sp_update", sqlcnn);
             sqlcmd.CommandType = CommandType.StoredProcedure;
             sqlcmd.Parameters.AddWithValue("@UserID", userid);
             sqlcmd.Parameters.AddWithValue("@ProfileImage", photo_arr);
@@ -189,7 +187,7 @@ namespace Torres_RegistrationActivity
             mem_stream.Read(photo_arr, 0, photo_arr.Length);
             //end
 
-            SqlCommand sqlcmd = new SqlCommand("sp_delete_user", sqlcnn);
+            SqlCommand sqlcmd = new SqlCommand("sp_delete", sqlcnn);
             sqlcmd.CommandType = CommandType.StoredProcedure;
             sqlcmd.Parameters.AddWithValue("@UserID", userid);
 
@@ -219,7 +217,7 @@ namespace Torres_RegistrationActivity
             sqlcnn.Open();
 
             DataTable dt = new DataTable();
-            SqlCommand sqlcmd = new SqlCommand("sp_search_users", sqlcnn);
+            SqlCommand sqlcmd = new SqlCommand("sp_search", sqlcnn);
             sqlcmd.CommandType = CommandType.StoredProcedure;
             sqlcmd.Parameters.AddWithValue("@keyword", search.Text);
             SqlDataAdapter sda = new SqlDataAdapter(sqlcmd);
@@ -241,7 +239,7 @@ namespace Torres_RegistrationActivity
             sqlcnn.Open();
 
             DataTable dt = new DataTable();
-            SqlCommand sqlcmd = new SqlCommand("sp_users_display", sqlcnn);
+            SqlCommand sqlcmd = new SqlCommand("sp_user_view", sqlcnn);
             sqlcmd.CommandType = CommandType.StoredProcedure;
             SqlDataAdapter sda = new SqlDataAdapter(sqlcmd);
             sda.Fill(dt);
