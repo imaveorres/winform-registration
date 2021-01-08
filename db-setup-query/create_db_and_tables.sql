@@ -5,6 +5,7 @@
 --/// </summary>
 
 CREATE DATABASE UserRegistration
+GO
 USE UserRegistration
 
 CREATE TABLE Users (
